@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Network Calculator</title>
+    <style>
+        :root {
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .info-box, .form-box {
+            flex: 1;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-top: 15px;
+            color: var(--text-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .result-container {
+            margin-top: 30px;
+            background-color: var(--background-color);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .result-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info-box">
+            <h2>Pi Network Calculator</h2>
+            <p>Bienvenue sur notre calculateur Pi Network. Cet outil vous permet de faire des prévisions précises pour vos gains en Pi. Voici comment l'utiliser :</p>
+            <ul>
+                <li>Entrez votre taux de minage total (visible dans l'application)</li>
+                <li>Ajoutez votre nombre actuel de Pi (optionnel)</li>
+                <li>Spécifiez la durée de votre prévision (années, mois, semaines, jours)</li>
+                <li>Indiquez le prix actuel d'un Pi en Euro (disponible sur <a href="https://www.coingecko.com/en/coins/pi-network/eur" target="_blank">CoinGecko</a>)</li>
+            </ul>
+            <p>Cliquez ensuite sur "Calculer" pour obtenir vos résultats. N'oubliez pas de remplir tous les champs, utilisez 0 si nécessaire.</p>
+        </div>
+        <div class="form-box">
+            <form name="somme">
+                <label for="tmt">Taux de minage total :</label>
+                <input id="tmt" name="tmt" type="number" step="any" required>
+
+                <label for="piact">Nombre de Pi actuel :</label>
+                <input id="piact" name="piact" type="number" step="any" required>
+
+                <label for="an">Année :</label>
+                <input id="an" name="an" type="number" step="any" required>
+
+                <label for="mois">Mois :</label>
+                <input id="mois" name="mois" type="number" step="any" required>
+
+                <label for="sem">Semaine :</label>
+                <input id="sem" name="sem" type="number" step="any" required>
+
+                <label for="jour">Jour :</label>
+                <input id="jour" name="jour" type="number" step="any" required>
+
+                <label for="euro">Prix d'un Pi en € :</label>
+                <input id="euro" name="euro" type="number" step="any" required>
+
+                <button type="button" onclick="operation(this.form)">Calculer</button>
+
+                <div class="result-container">
+                    <h3>Nombre total de Pi :</h3>
+                    <input name="result" disabled>
+
+                    <h3>Conversion en € :</h3>
+                    <input name="resultEuro" disabled>
+
+                    <h3>Argent récupéré par jour :</h3>
+                    <input name="pipajour" disabled>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function operation(form) {
+            const tmt = parseFloat(form.tmt.value) || 0;
+            const an = parseFloat(form.an.value) || 0;
+            const mois = parseFloat(form.mois.value) || 0;
+            const sem = parseFloat(form.sem.value) || 0;
+            const jour = parseFloat(form.jour.value) || 0;
+            const euro = parseFloat(form.euro.value) || 0;
+            const piact = parseFloat(form.piact.value) || 0;
+
+            if (!tmt || !euro) {
+                alert("Veuillez remplir tous les champs correctement.");
+                return;
+            }
+
+            const totalJours = jour + (sem * 7) + (mois * 30) + (an * 365.25);
+            const resultat = ((tmt * 24 * totalJours) + piact).toFixed(2);
+            const resultatEuro = (euro * resultat).toFixed(2);
+            const pijour = (tmt * 24).toFixed(2);
+
+            form.result.value = resultat;
+            form.resultEuro.value = resultatEuro;
+            form.pipajour.value = pijour;
+        }
+    </script>
+</body>
+</html>
