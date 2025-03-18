@@ -44,12 +44,18 @@
             border-radius: 10px;
             background-color: white;
             box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover, .form-box:hover {
+            transform: translateY(-5px);
         }
 
         h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
             font-size: 24px;
+            text-align: center;
         }
 
         p {
@@ -100,6 +106,7 @@
             background-color: var(--background-color);
             padding: 20px;
             border-radius: 10px;
+            box-shadow: var(--box-shadow);
         }
 
         .result-container h3 {
@@ -123,6 +130,32 @@
                 flex-direction: column;
             }
         }
+
+        /* Nouveau style pour l'encadré de texte */
+        .info-box {
+            border: 2px solid var(--primary-color);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 10px;
+        }
+
+        /* Style pour l'image */
+        .logo {
+            display: block;
+            margin: 20px auto;
+            margin-top: 80px;
+            max-width: 500px; /* Ajustez la taille selon vos besoins */
+        }
     </style>
 </head>
 <body>
@@ -137,6 +170,8 @@
                 <li>Indiquez le prix actuel d'un Pi en Euro (disponible sur <a href="https://www.coingecko.com/en/coins/pi-network/eur" target="_blank">CoinGecko</a>)</li>
             </ul>
             <p>Cliquez ensuite sur "Calculer" pour obtenir vos résultats. N'oubliez pas de remplir tous les champs, utilisez 0 si nécessaire.</p>
+            <!-- Ajout de l'image du logo -->
+            <img src="https://static.vecteezy.com/ti/vecteur-libre/p1/15369106-reseau-pi-icones-pi-illustration-de-conception-de-vecteur-de-logo-pi-un-symbole-pi-tendance-et-moderne-pour-les-logos-les-icones-les-modeles-les-sites-web-et-les-applications-gratuit-vectoriel.jpg" alt="Logo Pi Network" class="logo">
         </div>
         <div class="form-box">
             <form name="somme">
