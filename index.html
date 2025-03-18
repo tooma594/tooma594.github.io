@@ -28,6 +28,7 @@
 
         .container {
             display: flex;
+            flex-wrap: wrap; /* Permet de gérer le wrapping */
             justify-content: space-between;
             gap: 30px;
             max-width: 1200px;
@@ -39,7 +40,7 @@
         }
 
         .info-box, .form-box {
-            flex: 1;
+            flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
             padding: 30px;
             border-radius: 10px;
             background-color: white;
@@ -127,7 +128,11 @@
 
         @media (max-width: 768px) {
             .container {
-                flex-direction: column;
+                flex-direction: column; /* Colonne sur petits écrans */
+            }
+
+            .info-box, .form-box {
+                flex: 1 1 100%; /* Prend toute la largeur */
             }
         }
 
@@ -153,8 +158,8 @@
         .logo {
             display: block;
             margin: 20px auto;
-            margin-top: 80px;
-            max-width: 500px; /* Ajustez la taille selon vos besoins */
+            max-width: 100%; /* Ajuste la taille selon l'écran */
+            height: auto; /* Maintient le ratio */
         }
     </style>
 </head>
@@ -170,7 +175,6 @@
                 <li>Indiquez le prix actuel d'un Pi en Euro (disponible sur <a href="https://www.coingecko.com/en/coins/pi-network/eur" target="_blank">CoinGecko</a>)</li>
             </ul>
             <p>Cliquez ensuite sur "Calculer" pour obtenir vos résultats. N'oubliez pas de remplir tous les champs, utilisez 0 si nécessaire.</p>
-            <!-- Ajout de l'image du logo -->
             <img src="https://static.vecteezy.com/ti/vecteur-libre/p1/15369106-reseau-pi-icones-pi-illustration-de-conception-de-vecteur-de-logo-pi-un-symbole-pi-tendance-et-moderne-pour-les-logos-les-icones-les-modeles-les-sites-web-et-les-applications-gratuit-vectoriel.jpg" alt="Logo Pi Network" class="logo">
         </div>
         <div class="form-box">
